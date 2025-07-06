@@ -1,0 +1,26 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #00E200;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+}
+.logo {
+    width: 80px;
+    margin-bottom: 20px;
+}
+h1 {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+#countdown {
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
