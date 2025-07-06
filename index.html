@@ -3,25 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Human Codex</title>
+  <title>Video Center</title>
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      background-color: #000;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
+      background-color: black;
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
     }
-
     video {
       max-width: 100%;
-      max-height: 100%;
       height: auto;
-      width: auto;
+    }
+
+    @media (max-width: 768px) {
+      video {
+        width: 100%;
+        height: auto;
+      }
     }
   </style>
 </head>
