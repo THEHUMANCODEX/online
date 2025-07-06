@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video Center</title>
+  <title>Codex Video</title>
   <style>
     body {
       margin: 0;
@@ -13,6 +13,7 @@
       align-items: center;
       height: 100vh;
     }
+
     video {
       max-width: 100%;
       height: auto;
@@ -20,16 +21,14 @@
 
     @media (max-width: 768px) {
       video {
-        width: 100%;
-        height: auto;
+        width: 100vw;
+        height: 100vh;
+        object-fit: contain;
       }
     }
   </style>
 </head>
 <body>
-  <video autoplay muted loop playsinline>
-    <source src="LOADING_BAR.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+  <video src="LOADING_BAR.mp4" autoplay muted playsinline loop></video>
 </body>
 </html>
