@@ -5,23 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Human Codex</title>
   <style>
-    @font-face {
-      font-family: 'Handjet';
-      src: url('./Handjet-Medium.ttf') format('truetype');
-    }
-
     body {
       margin: 0;
       background-color: black;
-      font-family: 'Handjet', monospace;
-      color: #00E200;
+      font-family: 'Courier New', Courier, monospace;
       overflow: hidden;
-    }
-
-    .container {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
     }
 
     video {
@@ -29,115 +17,168 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      height: 100vh;
       width: auto;
-      object-fit: contain;
-      z-index: 1;
-      pointer-events: none;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
     }
 
-    .overlay {
+    .overlay-top {
       position: absolute;
-      top: 85%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 57%;
+      width: 100%;
       text-align: center;
-      z-index: 2;
+      color: #00E200;
+      font-size: 16px;
+      font-family: 'Courier New', Courier, monospace;
+      letter-spacing: 1.5px;
+      opacity: 0.9;
     }
 
-    .release-text {
-      font-size: 1.2rem;
+    .progress-container {
+      position: absolute;
+      top: 62%;
+      width: 80%;
+      left: 10%;
+      text-align: center;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00E200;
+      opacity: 0.9;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background-color: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress {
+      width: 20%;
+      height: 100%;
+      background-color: #00E200;
+      animation: progressAnim 5s infinite;
+    }
+
+    @keyframes progressAnim {
+      0% { width: 10%; }
+      50% { width: 20%; }
+      100% { width: 10%; }
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .overlay-bottom {
+      position: absolute;
+      bottom: 7%;
+      width: 100%;
+      text-align: center;
+    }
+
+    .release-label {
+      color: #00E200;
+      opacity: 0.9;
+      font-size: 14px;
       letter-spacing: 2px;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 28px;
+      gap: 18px;
+      color: #00E200;
+      opacity: 0.9;
     }
 
-    .unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .countdown div {
+      text-align: center;
     }
 
-    .number {
-      font-size: 2.2rem;
+    .countdown .number {
+      font-size: 22px;
     }
 
-    .label {
-      font-size: 0.75rem;
-      opacity: 0.6;
-      margin-top: 2px;
-    }
-
-    @media (max-width: 600px) {
-      .release-text {
-        font-size: 1rem;
-      }
-
-      .number {
-        font-size: 1.5rem;
-      }
-
-      .countdown {
-        gap: 18px;
-      }
+    .countdown .label {
+      font-size: 10px;
     }
   </style>
 </head>
-<body oncontextmenu="return false">
-  <div class="container">
-    <video src="LOADING_BAR.mp4" autoplay muted loop playsinline></video>
+<body>
 
-    <div class="overlay">
-      <div class="release-text">C0D3X RELEASE</div>
-      <div class="countdown">
-        <div class="unit">
-          <div class="number" id="days">365</div>
-          <div class="label">DAYS</div>
-        </div>
-        <div class="unit">
-          <div class="number" id="hours">00</div>
-          <div class="label">HRS</div>
-        </div>
-        <div class="unit">
-          <div class="number" id="minutes">00</div>
-          <div class="label">MINS</div>
-        </div>
-        <div class="unit">
-          <div class="number" id="seconds">00</div>
-          <div class="label">SECS</div>
-        </div>
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline>
+    <source src="LOADING_BAR.mp4" type="video/mp4" />
+  </video>
+
+  <!-- TOP Overlay -->
+  <div class="overlay-top">
+    DOWNLOADING HUMANITY INTO DATA
+  </div>
+
+  <!-- Progress Bar & Error -->
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+    <div class="error-message">TRY TOMORROW AGAIN.</div>
+  </div>
+
+  <!-- BOTTOM Countdown Overlay -->
+  <div class="overlay-bottom">
+    <div class="release-label">C0D3X RELEASE</div>
+    <div class="countdown" id="countdown">
+      <div>
+        <div class="number" id="days">364</div>
+        <div class="label">DAYS</div>
+      </div>
+      <div>
+        <div class="number" id="hours">23</div>
+        <div class="label">HRS</div>
+      </div>
+      <div>
+        <div class="number" id="minutes">59</div>
+        <div class="label">MINS</div>
+      </div>
+      <div>
+        <div class="number" id="seconds">59</div>
+        <div class="label">SECS</div>
       </div>
     </div>
   </div>
 
+  <!-- Countdown Script -->
   <script>
     const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 365);
+    targetDate.setFullYear(targetDate.getFullYear() + 1);
+    targetDate.setSeconds(targetDate.getSeconds() - 1); // 보정
 
     function updateCountdown() {
       const now = new Date();
-      const diff = targetDate - now;
+      const timeLeft = targetDate - now;
 
-      if (diff <= 0) return;
+      if (timeLeft <= 0) return;
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeLeft / 1000) % 60);
 
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
     }
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
+
 </body>
 </html>
