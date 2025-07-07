@@ -32,39 +32,28 @@
       height: 100vh;
       width: auto;
       object-fit: contain;
-      z-index: 0;
+      z-index: 1;
       pointer-events: none;
     }
 
-    .overlay {
+    .release-text {
       position: absolute;
+      top: 5%;
       width: 100%;
       text-align: center;
-      z-index: 2;
-      color: #00E200;
-    }
-
-    .line {
       font-size: 1.2rem;
       letter-spacing: 2px;
-      margin-top: 8px;
-    }
-
-    .error {
-      color: red;
-      font-size: 1rem;
-      margin-top: 8px;
+      z-index: 2;
     }
 
     .countdown {
       position: absolute;
       bottom: 5%;
-      left: 50%;
-      transform: translateX(-50%);
+      width: 100%;
       display: flex;
-      gap: 30px;
       justify-content: center;
-      z-index: 3;
+      gap: 40px;
+      z-index: 2;
     }
 
     .unit {
@@ -85,14 +74,14 @@
     }
 
     @media (max-width: 600px) {
-      .line {
-        font-size: 0.9rem;
+      .release-text {
+        font-size: 1rem;
       }
       .number {
         font-size: 2rem;
       }
       .countdown {
-        gap: 16px;
+        gap: 20px;
       }
     }
   </style>
@@ -101,11 +90,7 @@
   <div class="container">
     <video src="LOADING_BAR.mp4" autoplay muted loop playsinline></video>
 
-    <div class="overlay" style="top: 20%;">
-      <div class="line">C0D3X RELEASE</div>
-      <div class="line">DOWNLOADING HUMANITY INTO DATA</div>
-      <div class="error">SYSTEM ERROR</div>
-    </div>
+    <div class="release-text">C0D3X RELEASE</div>
 
     <div class="countdown">
       <div class="unit">
