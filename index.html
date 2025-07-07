@@ -40,11 +40,11 @@
 
     .countdown-overlay {
       position: absolute;
-      top: 50%;
+      bottom: 6%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
       text-align: center;
-      z-index: 1;
+      z-index: 2;
       width: 100%;
     }
 
@@ -79,66 +79,4 @@
       margin-top: 4px;
     }
 
-    @media (max-width: 600px) {
-      .countdown {
-        gap: 16px;
-        font-size: 1.2rem;
-      }
-      .number {
-        font-size: 2rem;
-      }
-    }
-  </style>
-</head>
-<body oncontextmenu="return false">
-  <div class="container">
-    <video src="LOADING_BAR.mp4" autoplay muted playsinline loop></video>
-    <div class="countdown-overlay">
-      <div class="title">C0D3X RELEASE</div>
-      <div class="countdown">
-        <div class="unit">
-          <div class="number" id="days">365</div>
-          <div class="label">DAYS</div>
-        </div>
-        <div class="unit">
-          <div class="number" id="hours">00</div>
-          <div class="label">HRS</div>
-        </div>
-        <div class="unit">
-          <div class="number" id="minutes">00</div>
-          <div class="label">MINS</div>
-        </div>
-        <div class="unit">
-          <div class="number" id="seconds">00</div>
-          <div class="label">SECS</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 365);
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
-
-      if (diff <= 0) return;
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
-</body>
-</html>
+    @media
