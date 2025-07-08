@@ -38,9 +38,9 @@
 
     .overlay {
       position: absolute;
-      top: 85%;
+      top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -30%);
       text-align: center;
       z-index: 2;
     }
@@ -73,6 +73,25 @@
       margin-top: 2px;
     }
 
+    .download-button {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .download-button button {
+      font-family: 'Handjet', monospace;
+      background-color: transparent;
+      border: 1px solid #FF0033;
+      color: #FF0033;
+      padding: 4px 12px;
+      font-size: 1.1rem;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
     @media (max-width: 600px) {
       .release-text {
         font-size: 1rem;
@@ -80,6 +99,10 @@
 
       .number {
         font-size: 1.5rem;
+      }
+
+      .label {
+        font-size: 0.65rem;
       }
 
       .countdown {
@@ -112,23 +135,14 @@
           <div class="label">SECS</div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div style="margin-top: 24px; display: flex; justify-content: center;">
-    <button onclick="window.location.href='https://thehumancodex.gumroad.com/l/oiojav'"
-      style="font-family: 'Handjet', monospace;
-             background-color: transparent;
-             border: 1px solid #FF0033;
-             color: #FF0033;
-             padding: 4px 12px;
-             font-size: 1.1rem;
-             letter-spacing: 1.5px;
-             cursor: pointer;
-             text-transform: uppercase;
-             line-height: 1;">
-      D0WNL0AD
-    </button>
+      <!-- ✅ 버튼: 카운트다운 바로 아래 -->
+      <div class="download-button">
+        <button onclick="window.location.href='https://thehumancodex.gumroad.com/l/oiojav'">
+          D0WNL0AD
+        </button>
+      </div>
+    </div>
   </div>
 
   <script>
